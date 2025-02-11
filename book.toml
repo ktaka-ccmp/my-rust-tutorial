@@ -3,4 +3,4 @@ authors = ["Kimitoshi Takahashi"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Personal tutorial for Rust"
+title = "My Rust tutorial"
