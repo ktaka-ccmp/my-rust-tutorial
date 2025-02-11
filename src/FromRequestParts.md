@@ -5,7 +5,7 @@
 
 ## Definition and Core Concepts
 
-```rust
+```rust,ignore
 pub trait FromRequestParts<S>: Sized {
     type Rejection: IntoResponse;
 
@@ -38,7 +38,7 @@ Extractors in Axum are automatically called when a request is processed. You don
 
 ### Example 1: Custom Header Extractor
 
-```rust
+```rust,ignore
 use axum::{
     extract::FromRequestParts,
     http::{request::Parts, HeaderMap},
@@ -86,7 +86,7 @@ async fn handler(custom_header: CustomHeader) -> String {
 
 ### Example 2: User Authentication Extractor
 
-```rust
+```rust,ignore
 impl<S> FromRequestParts<S> for User
 where
     MemoryStore: FromRef<S>,
@@ -123,7 +123,7 @@ where
 
 ### Example 3: Multiple Extractors
 
-```rust
+```rust,ignore
 use axum::{
     extract::State,
     http::{Method, Uri},
@@ -184,7 +184,7 @@ Use `FromRequest` instead when:
 
 ## A.1 Rate Limiting Extractor
 
-```rust
+```rust,ignore
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -251,7 +251,7 @@ where
 
 ## A.2 Content Type Validator
 
-```rust
+```rust,ignore
 struct JsonContentType;
 
 #[derive(Debug)]
@@ -295,7 +295,7 @@ impl<S> FromRequestParts<S> for JsonContentType {
 
 ## B.1 Bearer Token Authentication
 
-```rust
+```rust,ignore
 struct BearerToken(String);
 
 #[derive(Debug)]
@@ -352,7 +352,7 @@ impl<S> FromRequestParts<S> for BearerToken {
 
 ## B.2 API Key Validation
 
-```rust
+```rust,ignore
 struct ApiKey(String);
 
 #[derive(Debug)]
@@ -391,7 +391,7 @@ impl<S> FromRequestParts<S> for ApiKey {
 
 ## C.1 Request ID Tracking
 
-```rust
+```rust,ignore
 #[derive(Clone, Debug)]
 struct RequestId(Arc<str>);
 
@@ -418,7 +418,7 @@ impl<S> FromRequestParts<S> for RequestId {
 
 ## C.2 User Agent Parser
 
-```rust
+```rust,ignore
 struct UserAgent(String);
 
 impl<S> FromRequestParts<S> for UserAgent {

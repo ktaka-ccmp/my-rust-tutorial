@@ -15,7 +15,7 @@ The `AuthRedirect` struct triggers a temporary redirect response to the root URL
 ### `IntoResponse` Implementation for `AuthRedirect`
 The `IntoResponse` trait is implemented for the `AuthRedirect` struct. This allows `AuthRedirect` to be returned as a response, which in this case is a redirect to the root URL:
 
-```rust
+```rust,ignore
 impl IntoResponse for AuthRedirect {
     fn into_response(self) -> Response {
         println!("AuthRedirect called.");
@@ -31,7 +31,7 @@ The `FromRequestParts` trait is implemented for extracting a `User` from the req
 
 In this implementation, we use `FromRequestParts` to extract the user from the session cookie:
 
-```rust
+```rust,ignore
 impl<S> FromRequestParts<S> for User
 where
     S: Send + Sync,
@@ -72,7 +72,7 @@ where
 ### `OptionalFromRequestParts` for `User`
 The `OptionalFromRequestParts` trait is also implemented for the `User` type. This version attempts to extract the user, but instead of rejecting the request, it returns an `Option<User>`, meaning the user may or may not be present in the request.
 
-```rust
+```rust,ignore
 impl<S> OptionalFromRequestParts<S> for User
 where
     S: Send + Sync,
